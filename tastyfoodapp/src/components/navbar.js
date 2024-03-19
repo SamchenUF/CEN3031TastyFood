@@ -2,65 +2,37 @@ import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <>
-      <div className="flex h-screen flex-col md:flex-row md:overflow-hidden mt-0.5 md:mt-2">
-        <div className="w-full flex-none md:w-64">
-          <ul className="hidden md:flex gap-x-6 text-white justify-end w-full pr-8">
-            <li>
-              <Link href="/">
-                <p>Home</p> {/* Changed <p> to <a> for proper semantic HTML and accessibility */}
-              </Link>
-            </li>
-            <li>
-              <Link href="/about">
-                <p>About</p> {/* Changed <p> to <a> */}
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact">
-                <p>Contact</p> {/* Changed <p> to <a> */}
-              </Link>
-            </li>
-          </ul>
-        </div>
-        {/* Right-aligned login button container */}
-        <div className="hidden md:flex justify-end w-full pr-8">
+    <div className="w-full h-20 sticky mt-4 md:mt-8">
+      <div className="w-full flex justify-between items-center px-8">
+        {/* Left-aligned navigation links */}
+        <ul className="flex gap-x-6">
+          <li>
+            <Link href="/">
+              <p>Home</p>
+            </Link>
+          </li>
+          <li>
+            <Link href="/about">
+              <p>About</p>
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact">
+              <p>Contact</p>
+            </Link>
+          </li>
+        </ul>
+        {/* Right-aligned login button */}
+        <div>
           <Link href="/login">
-            <p className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <p className="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">
               Login
             </p>
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
-
-
-
-
-// const Navbar = () => {
-//   return (
-//     <nav>
-//       <ul>
-//         <li>
-//           <Link href="/">
-//             <p>Home</p>
-//           </Link>
-//         </li>
-//         <li>
-//           <Link href="/about">
-//             <p>About</p>
-//           </Link>
-//         </li>
-//         <li>
-//           <Link href="/contact">
-//             <p>Contact</p>
-//           </Link>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// };
 
 export default Navbar;
