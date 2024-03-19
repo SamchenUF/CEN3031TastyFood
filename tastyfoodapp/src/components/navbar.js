@@ -2,55 +2,37 @@ import Link from 'next/link';
 
 const Navbar = () => {
   return (
-      <div className="w-full h-20 sticky top-0">
-        <div className="w-full container mx-auto px-4 h-full">
-            <ul className="flex justify-between items-center h-full"> 
-              <li>
-                <Link href="/">
-                  <p>Home</p>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about">
-                  <p>About</p>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact">
-                  <p>Contact</p>
-                </Link>
-              </li>
-            </ul>
-          </div>
+    <div className="w-full h-20 sticky mt-4 md:mt-8">
+      <div className="w-full flex justify-between items-center px-8">
+        {/* Left-aligned navigation links */}
+        <ul className="flex gap-x-6">
+          <li>
+            <Link href="/">
+              <p>Home</p>
+            </Link>
+          </li>
+          <li>
+            <Link href="/about">
+              <p>About</p>
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact">
+              <p>Contact</p>
+            </Link>
+          </li>
+        </ul>
+        {/* Right-aligned login button */}
+        <div>
+          <Link href="/login">
+            <p className="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">
+              Login
+            </p>
+          </Link>
         </div>
+      </div>
+    </div>
   );
 };
-
-
-
-
-// const Navbar = () => {
-//   return (
-//     <nav>
-//       <ul>
-//         <li>
-//           <Link href="/">
-//             <p>Home</p>
-//           </Link>
-//         </li>
-//         <li>
-//           <Link href="/about">
-//             <p>About</p>
-//           </Link>
-//         </li>
-//         <li>
-//           <Link href="/contact">
-//             <p>Contact</p>
-//           </Link>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// };
 
 export default Navbar;
