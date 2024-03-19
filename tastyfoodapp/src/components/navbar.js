@@ -3,9 +3,9 @@ import Link from 'next/link';
 const Navbar = () => {
   return (
     <>
-      <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-      <div className="w-full flex-none md:w-64 mt-0.5 md:mt-2">
-          <ul className="hidden md:flex gap-x-6 text-white">
+      <div className="flex h-screen flex-col md:flex-row md:overflow-hidden mt-0.5 md:mt-2">
+        <div className="w-full flex-none md:w-64">
+          <ul className="hidden md:flex gap-x-6 text-white justify-end w-full pr-8">
             <li>
               <Link href="/">
                 <p>Home</p> {/* Changed <p> to <a> for proper semantic HTML and accessibility */}
