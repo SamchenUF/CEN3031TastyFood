@@ -31,3 +31,13 @@ body {
     text-wrap: balance;
   }
 }
+
+button {
+  outline-color: #2563eb;
+  height: 4rem;
+  background-color: rgb(2 165 233);
+  width: 24rem;
+  position: absolute;
+  bottom: 20rem;
+  justify-content: center;
+}
