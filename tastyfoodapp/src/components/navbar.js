@@ -1,10 +1,9 @@
 import Link from 'next/link';
 const Navbar = () => {
   return (
-    <>
-      <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-        <div className="w-full flex-none md:w-64">
-            <ul className="hidden md:flex gap-x-6 text-white">
+      <div className="w-full h-20 sticky top-0">
+        <div className="w-full container mx-auto px-4 h-full">
+            <ul className="flex justify-between items-center h-full"> 
               <li>
                 <Link href="/">
                   <p>Home</p>
@@ -23,7 +22,6 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-    </>
   );
 };
 
