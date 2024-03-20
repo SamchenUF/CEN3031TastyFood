@@ -1,4 +1,8 @@
+import Link from 'next/link';
 
+function gen() {
+  window.location="genrecipes.js";
+}
 
 export default function Home() {
   return (
@@ -6,8 +10,11 @@ export default function Home() {
         <p className="fixed left-0 top-0 flex w-full justify-center font-bold mt-1 md:mt-4"> Welcome to TastyFood</p>
         <div>
           <p> Tastyfood will allow you to generate a variety of different recipes using AI tailored to your preferences and needs.</p>
-          <div class="flex justify-center">
-            <button className = "outline-blue-500 size-16 bg-sky-500 hover:bg-sky-700 w-96 absolute bottom-80 justify-center rounded">Generate Recipes</button>
+          <div class="flex justify-center mt-4 md:mt-8">
+            {/* Button should take us to a the generating recipe page*/}
+            <Link href="/genrecipes">
+              <button className = "outline-sky-500 size-16 bg-sky-500 hover:bg-sky-700 w-96 justify-center rounded flex items-center py-2 px-4">Generate Recipes</button>
+            </Link>
           </div>
         </div>
     </main>

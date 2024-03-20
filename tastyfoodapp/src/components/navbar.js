@@ -25,7 +25,7 @@ const Navbar = () => {
         {/* Right-aligned login button */}
         <div>
           <Link href="/login">
-            <p className="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">
+            <p className="bg-sky-500 hover:bg-sky-700 py-2 px-4 rounded">
               Login
             </p>
           </Link>
