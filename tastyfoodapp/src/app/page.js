@@ -1,8 +1,3 @@
-import Link from 'next/link';
-
-function gen() {
-  window.location="genrecipes.js";
-}
 
 export default function Home() {
   return (
