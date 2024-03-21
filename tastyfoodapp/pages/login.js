@@ -13,6 +13,8 @@ const Login = () => {
     alert(`Login attempt with username: ${username} and password: ${password}`);
   };
 
+export default function Login() {
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-100">
       <h1 className="text-3xl font-bold mb-4">Login Page</h1>
@@ -52,5 +54,4 @@ const Login = () => {
     </main>
   );
 };
-
 export default Login;
