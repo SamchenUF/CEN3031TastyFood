@@ -25,5 +25,3 @@ const GenRecipes = () => {
     </main>
   );
 };
-
-export default GenRecipes;

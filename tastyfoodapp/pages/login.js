@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Login = () => {
+export default function Login() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-3xl font-bold">Login Page</h1>
@@ -8,5 +6,3 @@ const Login = () => {
     </main>
   );
 };
-
-export default Login;
