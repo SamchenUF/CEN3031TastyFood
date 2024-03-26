@@ -7,6 +7,8 @@ export default function GenRecipes() {
   const [ingredient3, setIngredient3] = useState('');
   const [ingredient4, setIngredient4] = useState('');
   const [ingredient5, setIngredient5] = useState('');
+  const [prompt, setPrompt] = useState('');
+  const [message, setMessage] = useState('');
 
   function handleClick() {
     console.log('Button clicked!');
@@ -16,8 +18,26 @@ export default function GenRecipes() {
     console.log('Ingredient 3:', ingredient3);
     console.log('Ingredient 4:', ingredient4);
     console.log('Ingredient 5:', ingredient5);
+    getResponse();
   }
+  const getResponse = async () => {
+    let temp = message;
+    setPrompt = ('Given the ingredients ' + ingredient1, ", " + ingredient2 + ", " + ingredient3+ ", " + ingredient4 + ", " + ingredient5 + ". Give me 5 recipes that can be made with these ingredients.")
+    temp.push({ role: "user", content: prompt });
+    setMessage(temp);
+    const response = await fetch("/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
+      body: JSON.stringify({message}),
+    });
+
+    const gptresponse = await response.json();
+    const { output } = gptresponse;
+    console.log(response);
+  };
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-2xl font-bold">Generate Recipes</h1>
@@ -64,12 +84,16 @@ export default function GenRecipes() {
         />
         <p></p>
         {/* Button with onClick event */}
-        <button
-          onClick={handleClick}
-          className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
+        <button onClick={handleClick} className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Find a Recipe!
         </button>
+        {response && (
+        <div>
+          {response.map(item => (
+            <div key={item.id}>{item.name}</div>
+            ))}
+        </div>
+        )}
       </form>
     </main>
   );
