@@ -7,10 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'unbounded': ['Unbounded', 'sans-serif'], // Adding custom font
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        'custom-bluegrey': '#07a0c3',
       },
     },
   },

@@ -8,7 +8,7 @@ export default function Home() {
           <div class="flex justify-center mt-4 md:mt-8">
             {/* Button should take us to a the generating recipe page*/}
             <Link href="/genrecipes" legacyBehavior>
-              <button className = "outline-sky-500 size-16 bg-sky-500 hover:bg-sky-700 w-96 justify-center rounded flex items-center py-2 px-4">Generate Recipes</button>
+              <button className = "outline-sky-500 size-16 bg-custom-bluegrey hover:bg-sky-600 w-96 justify-center rounded flex items-center py-2 px-4">Generate Recipes</button>
             </Link>
           </div>
         </div>
