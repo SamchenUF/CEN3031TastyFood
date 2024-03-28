@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import gptCall from './/api/gptCall';
 export default function GenRecipes() {
   // State variables to manage input values
   const [ingredient1, setIngredient1] = useState('');
@@ -7,6 +7,8 @@ export default function GenRecipes() {
   const [ingredient3, setIngredient3] = useState('');
   const [ingredient4, setIngredient4] = useState('');
   const [ingredient5, setIngredient5] = useState('');
+  const [prompt, setPrompt] = useState('');
+  const [message, setMessage] = useState('');
 
   function handleClick() {
     console.log('Button clicked!');
@@ -17,11 +19,19 @@ export default function GenRecipes() {
     console.log('Ingredient 4:', ingredient4);
     console.log('Ingredient 5:', ingredient5);
   }
-
+  const getResponse = async () => {
+    let temp = message;
+    console.log('working');
+    setPrompt('Given the ingredients ' + ingredient1, ", " + ingredient2 + ", " + ingredient3+ ", " + ingredient4 + ", " + ingredient5 + ". Give me 5 recipes that can be made with these ingredients.")
+    const responseData = await gptCall(prompt);
+    //const { output } = responseData;
+    setMessage(responseData);
+    //setMessage(output);
+  };
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-2xl font-bold">Generate Recipes</h1>
-      <p className="text-center">What ingredients would you like to generate a recipe with?</p>
+      <h1 className="text-2xl font-bold">Generating Recipes</h1>
+      <p className="text-center">What ingredients would you like to generate recipe with?</p>
       <form>
         <input
           type="text"
@@ -64,13 +74,13 @@ export default function GenRecipes() {
         />
         <p></p>
         {/* Button with onClick event */}
-        <button
-          onClick={handleClick}
-          className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Find a Recipe!
-        </button>
       </form>
+      <div>
+      <button type ='button' onClick={getResponse} className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Find a Recipe!
+      </button>
+      {message && <p>{message}</p>}
+      </div>
     </main>
   );
 }
