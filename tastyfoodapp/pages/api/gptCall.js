@@ -1,20 +1,20 @@
 import OpenAI from "openai"
 
 const openai = new OpenAI({
-  apiKey: "", dangerouslyAllowBrowser: true//Put api key here 
+  apiKey: process.env.NEXT_PUBLIC_CHATGPT_API_KEY, dangerouslyAllowBrowser: true//Put api key here 
 });
 
-/*export default async function gptCall(message) {
-  const body = await req.json();
-  const response = await openai.createChatCompletion({
+export default async function gptCall(message) {
+  console.log(message);
+  const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
-    messages: message,
+    messages: [{"role": "user", "content":message}],
   });
-  const actualResponse = response.choices[0].text;
-  res.status(200).json({ response: actualResponse });
+  const actualResponse = response.choices[0].message.content;
+  return actualResponse;
   
-}*/
-export default async function gptCall(messages) {
+}
+/*export default async function gptCall(messages) {
   const temp = "WORKING";
   return temp;
-}
+}*/
