@@ -20,8 +20,7 @@ export default function GenRecipes() {
     console.log('Ingredient 5:', ingredient5);
   }
   const getResponse = async () => {
-    
-    let temp = 'Given the ingredients ' + ingredient1 + ", " + ingredient2 + ", " + ingredient3+ ", " + ingredient4 + ", " + ingredient5 + ". Give me 5 recipes that can be made with these ingredients.";
+    const temp = 'Given the ingredients ' + ingredient1 + ", " + ingredient2 + ", " + ingredient3+ ", " + ingredient4 + ", " + ingredient5 + ". Give me 5 recipes that can be made with these ingredients.";
     const responseData = await gptCall(temp);
     //const { output } = responseData;
     setMessage(responseData);
