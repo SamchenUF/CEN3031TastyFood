@@ -11,7 +11,7 @@ const Login = () => {
     event.preventDefault();
     // handle authentication
     console.log('Submitting:', { username, password });
-    alert(`Login attempt with username: ${username} and password: ${password}`);
+    (`Login attempt with username: ${username} and password: ${password}`);
   };
 
   return (
@@ -27,8 +27,12 @@ const Login = () => {
               name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
+              style={{ color: 'black',
+                        paddingLeft: "10px",
+                  }}
             />
+
             <p></p>
           </div>
           <div className="mb-6">
@@ -39,7 +43,10 @@ const Login = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              style={{ color: 'black',
+              paddingLeft: "10px"
+        }}
             />
           </div>
           <div className="flex items-center justify-between">
