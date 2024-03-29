@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import gptCall from './/api/gptCall';
+import Layout from '@/components/layout';
+
 export default function GenRecipes() {
   // State variables to manage input values
   const [ingredient1, setIngredient1] = useState('');
@@ -27,6 +29,7 @@ export default function GenRecipes() {
     //setMessage(output);
   };
   return (
+    <Layout>
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-2xl font-bold">Generating Recipes</h1>
       <p className="text-center">What ingredients would you like to generate recipe with?</p>
@@ -37,6 +40,11 @@ export default function GenRecipes() {
           value={ingredient1}
           onChange={(e) => setIngredient1(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
         />
         <p></p>
         <input
@@ -45,6 +53,11 @@ export default function GenRecipes() {
           value={ingredient2}
           onChange={(e) => setIngredient2(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
         />
         <p></p>
         <input
@@ -53,6 +66,11 @@ export default function GenRecipes() {
           value={ingredient3}
           onChange={(e) => setIngredient3(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
         />
         <p></p>
         <input
@@ -61,6 +79,11 @@ export default function GenRecipes() {
           value={ingredient4}
           onChange={(e) => setIngredient4(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
         />
         <p></p>
         <input
@@ -69,16 +92,22 @@ export default function GenRecipes() {
           value={ingredient5}
           onChange={(e) => setIngredient5(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
         />
         <p></p>
         {/* Button with onClick event */}
       </form>
       <div>
-      <button type ='button' onClick={getResponse} className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button type ='button' onClick={getResponse} className="outline-sky-500 size-16 bg-custom-bluegrey hover:bg-sky-600 w-96 justify-center rounded flex items-center py-2 px-4">
           Find a Recipe!
       </button>
       {message && <p>{message}</p>}
       </div>
     </main>
+    </Layout>
   );
 }
