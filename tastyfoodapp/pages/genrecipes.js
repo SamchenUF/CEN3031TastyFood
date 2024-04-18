@@ -29,7 +29,8 @@ export default function GenRecipes() {
     const getResponse = async () => {
         const temp = `Given the ingredients ${ingredient1}, ${ingredient2}, ${ingredient3}, ${ingredient4}, ${ingredient5}. Give me 5 recipes that can be made with these ingredients.`;
         const responseData = await gptCall(temp);
-        setRecipes(responseData.split('\n')); // Assuming responseData is a string of recipes separated by newlines
+        const uniqueRecipes = Array.from(new Set(responseData.split('\n')));  // Remove duplicates
+        setRecipes(uniqueRecipes);
     };
 
     const addToFavorites = (recipe) => {
@@ -68,7 +69,7 @@ export default function GenRecipes() {
             </button>
             {recipes.length > 0 && (
                 <div className="mt-4">
-                    <h2 className="text-xl font-bold">Generated Recipes:</h2>
+                    <h2 className="text-xl font-bold">Recipes:</h2>
                     {recipes.map((recipe, index) => (
                         <div key={index} className="mb-2">
                             <p>{recipe}</p>
