@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   return (
@@ -28,6 +29,15 @@ const Navbar = () => {
         {/* Center-aligned "TastyFood" text */}
         <div className="flex-grow text-center">
           <div className="text-2xl font-bold text-white pr-44 font-unbounded">TastyFood</div>
+        </div>
+
+        {/*Right-aligned friends button*/}
+        <div className="flex">
+          <Link href="/friends/hub" legacyBehavior>
+            <a>
+            <Image src="/friends.png" alt="Friends" width={20} height={20}/>
+            </a>
+          </Link>
         </div>
 
         {/* Right-aligned login button */}

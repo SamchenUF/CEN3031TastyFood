@@ -9,7 +9,7 @@ export default function GenRecipes() {
     const [ingredient5, setIngredient5] = useState('');
     const [recipes, setRecipes] = useState([]); // This will store individual recipes
     const [favorites, setFavorites] = useState([]);
-    const [showFavorites, setShowFavorites] = useState(false); // State to toggle favorites visibility
+    const [showFavorites, setShowFavorites] = useState(false); // State to toggle favorites visibility 
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
