@@ -46,11 +46,11 @@ const Login = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               style={{ color: 'black',
               paddingLeft: "10px"
-        }}
+                  }}
             />
           </div>
           <div className="flex items-center justify-between">
-          <p></p>
+          <a href="/accounts/reset">Forgot Password</a>
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -59,6 +59,7 @@ const Login = () => {
             </button>
             {/*include a "Sign Up" or "Forgot Password?" link here */}
           </div>
+          <p>New to TastyFood?   <a href="/accounts/register">Register an Account</a></p>
         </form>
       </main>
     </Layout>
