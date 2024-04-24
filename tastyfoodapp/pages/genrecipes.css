@@ -1,0 +1,56 @@
+@media only screen and (max-width: 1200px) {
+    .super-flex-container{
+        flex-direction:column!important;
+    }
+    .super-render-wrapper{
+        margin-left:0!important;
+        margin-right:0!important;
+    }
+  }
+  
+.super-flex-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+
+
+.super-generate-wrapper{
+    margin-left: 0%;
+    width: 500px;
+    margin-right: 25px;
+    align-items:center;
+    
+}
+
+.super-render-wrapper{
+    margin-left: 5%;
+    margin-right:5%;
+    align-items:center;
+}
+
+.generate-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+  
+  }
+
+  
+  .generate-wrapper button{
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .message-wrapper{
+    width: 400px;
+
+  }
+
+  .render-wrapper{
+    align-items:center;
+  }
+  
