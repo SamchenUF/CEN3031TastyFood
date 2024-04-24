@@ -1,98 +1,161 @@
-import React, { useState, useEffect } from 'react';
-import gptCall from './api/gptCall';
+import React, { useState } from 'react';
+import gptCall from './/api/gptCall';
+import Layout from '@/components/layout';
+import "./genrecipes.css";
+
 
 export default function GenRecipes() {
-    const [ingredient1, setIngredient1] = useState('');
-    const [ingredient2, setIngredient2] = useState('');
-    const [ingredient3, setIngredient3] = useState('');
-    const [ingredient4, setIngredient4] = useState('');
-    const [ingredient5, setIngredient5] = useState('');
-    const [recipes, setRecipes] = useState([]); // This will store individual recipes
-    const [favorites, setFavorites] = useState([]);
-    const [showFavorites, setShowFavorites] = useState(false); // State to toggle favorites visibility 
+  // State variables to manage input values
+  const [ingredient1, setIngredient1] = useState('');
+  const [ingredient2, setIngredient2] = useState('');
+  const [ingredient3, setIngredient3] = useState('');
+  const [ingredient4, setIngredient4] = useState('');
+  const [ingredient5, setIngredient5] = useState('');
+  const [prompt, setPrompt] = useState('');
+  const [message, setMessage] = useState('');
+  const [favorites, setFavorites] = useState([]);
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const savedFavorites = localStorage.getItem('favorites');
-            if (savedFavorites) {
-                setFavorites(JSON.parse(savedFavorites));
-            }
-        }
-    }, []);
+  function handleClick() {
+    console.log('Button clicked!');
+    // You can access the ingredient values here and perform further actions
+    console.log('Ingredient 1:', ingredient1);
+    console.log('Ingredient 2:', ingredient2);
+    console.log('Ingredient 3:', ingredient3);
+    console.log('Ingredient 4:', ingredient4);
+    console.log('Ingredient 5:', ingredient5);
+  }
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-        }
-    }, [favorites]);
+  const getResponse = async () => {
+    const temp = 'Given the ingredients ' + ingredient1 + ", " + ingredient2 + ", " + ingredient3+ ", " + ingredient4 + ", " + ingredient5 + ". Give me 5 recipes that can be made with these ingredients.";
+    const responseData = await gptCall(temp);
+    setMessage(responseData);
+  };
 
-    const getResponse = async () => {
-        const temp = `Given the ingredients ${ingredient1}, ${ingredient2}, ${ingredient3}, ${ingredient4}, ${ingredient5}. Give me 5 recipes that can be made with these ingredients.`;
-        const responseData = await gptCall(temp);
-        const uniqueRecipes = Array.from(new Set(responseData.split('\n')));  // Remove duplicates
-        setRecipes(uniqueRecipes);
-    };
+  // Splitting the message into individual recipes
+  const renderRecipes = () => {
+    if (!message) return null;
+    const recipes = message.split(/\d+\./).filter(recipe => recipe.trim().length > 0);
+    return recipes.map((recipe, index) => (
+      <div key={index}>
+        <p>{index + 1}. {recipe.trim()}</p>
+        <button
+  type="button"
+  onClick={() => handleSaveRecipe(recipe)}
+  className='bg-custom-bluegrey hover:bg-sky-600 text-black px-4 py-2 rounded shadow-md'
+>
+  Save Recipe
+</button>
 
-    const addToFavorites = (recipe) => {
-        if (!favorites.includes(recipe)) {
-            setFavorites([...favorites, recipe]);
-        } else {
-            alert("This recipe is already in your favorites!");
-        }
-    };
+      </div>
+    ));
+  };
 
-    const removeFromFavorites = (recipe) => {
-        const updatedFavorites = favorites.filter(fav => fav !== recipe);
-        setFavorites(updatedFavorites);
-    };
+  const handleSaveRecipe = (recipe) => {
+    setFavorites(prevFavorites => [...prevFavorites, recipe]);
+  };
 
-    const toggleFavorites = () => {
-        setShowFavorites(!showFavorites);
-    };
-
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+  return (
+    <Layout>
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <div className="super-flex-container">
+          <div className="super-generate-wrapper">
             <h1 className="text-2xl font-bold">Generating Recipes</h1>
             <p className="text-center">What ingredients would you like to generate recipe with?</p>
-            <form className="space-y-4">
-            <input type="text" placeholder="Ingredient 1" value={ingredient1} onChange={(e) => setIngredient1(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-               <input type="text" placeholder="Ingredient 2" value={ingredient2} onChange={(e) => setIngredient2(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-               <input type="text" placeholder="Ingredient 3" value={ingredient3} onChange={(e) => setIngredient3(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-               <input type="text" placeholder="Ingredient 4" value={ingredient4} onChange={(e) => setIngredient4(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-               <input type="text" placeholder="Ingredient 5" value={ingredient5} onChange={(e) => setIngredient5(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <form>
+              <input
+                type="text"
+                placeholder="Ingredient 1"
+                value={ingredient1}
+                onChange={(e) => setIngredient1(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                style={{
+                  color: 'black',
+                  paddingLeft: "10px",
+                  margin: "10px"
+                }}
+              />
+               <input
+          type="text"
+          placeholder="Ingredient 2"
+          value={ingredient2}
+          onChange={(e) => setIngredient2(e.target.value)}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
+        />
+        <p></p>
+        <input
+          type="text"
+          placeholder="Ingredient 3"
+          value={ingredient3}
+          onChange={(e) => setIngredient3(e.target.value)}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
+        />
+        
+        <input
+          type="text"
+          placeholder="Ingredient 4"
+          value={ingredient4}
+          onChange={(e) => setIngredient4(e.target.value)}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
+        />
+        <p></p>
+        <input
+          type="text"
+          placeholder="Ingredient 5"
+          value={ingredient5}
+          onChange={(e) => setIngredient5(e.target.value)}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          style={{
+            color: 'black',
+            paddingLeft: "10px",
+            margin: "10px"
+          }}
+        />
+    
             </form>
-            <button onClick={getResponse} className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Find a Recipe!
-            </button>
-            <button onClick={toggleFavorites} className="mt-4 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                View Favorites
-            </button>
-            {recipes.length > 0 && (
-                <div className="mt-4">
-                    <h2 className="text-xl font-bold">Recipes:</h2>
-                    {recipes.map((recipe, index) => (
-                        <div key={index} className="mb-2">
-                            <p>{recipe}</p>
-                            <button onClick={() => addToFavorites(recipe)} className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
-                                Save to Favorites
-                            </button>
-                        </div>
-                    ))}
+         
+          </div>
+
+          <div className="super-render-wrapper">
+          <button type="button" onClick={getResponse} className="outline-sky-500 size-16 bg-custom-bluegrey hover:bg-sky-600 w-full justify-center rounded flex items-center py-2 px-4">
+                Find Recipes
+              </button>
+            <div className="render-wrapper">
+              <div className="generate-wrapper">
+                <div className="message-wrapper">
+                  {/* Render each recipe with its own <p> tag and save button */}
+                  {renderRecipes()}
                 </div>
-            )}
-            {showFavorites && (
-                <div className="mt-4">
-                    <h2 className="text-xl font-bold">Your Favorite Recipes:</h2>
-                    {favorites.map((fav, index) => (
-                        <div key={index} className="flex justify-between items-center">
-                            <p>{fav}</p>
-                            <button onClick={() => removeFromFavorites(fav)} className="ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
-                                Remove
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </main>
-    );
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Display favorite recipes */}
+      
+      <div className="favorites-wrapper">
+        <h2 className="text-2xl font-bold">Favorites</h2>
+        <ul>
+          {favorites.map((favRecipe, index) => (
+            <li key={index}>{favRecipe}</li>
+          ))}
+        </ul>
+      </div>
+    </Layout>
+  );
 }
