@@ -18,7 +18,7 @@ export default function Register() {
     setConfirmation(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
 
     e.preventDefault(); // Prevent default form submission
     if (username.length == 0) {
@@ -27,12 +27,20 @@ export default function Register() {
       alert("Your passwords do not match!");
     } else { // this doesn't actually save the information anywhere. I want to try and write this into the .env file,
       // but it keeps saying that fs (which is the required module) is not found
-      alert(`Submitted text: ${username} ${password} ${confirmation}`);
-    }
-    // check to make sure that the username is not already in the .env file
+      const response = await fetch('/api/registerAccount', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
   
-
-     // Display the text box content
+      if (response.ok) {
+        alert("Your account is now registered. Please go to the login page.");
+      } else {
+        alert(`${username} is already taken. Please enter another username.`);
+      }
+    };
   };
 
   return (
