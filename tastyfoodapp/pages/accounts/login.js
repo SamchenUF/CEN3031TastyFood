@@ -6,12 +6,10 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     // handle authentication
-    console.log('Submitting:', { username, password });
-    (`Login attempt with username: ${username} and password: ${password}`);
+    alert(`Submitting:, ${username}, ${password}`);
   };
 
   return (
