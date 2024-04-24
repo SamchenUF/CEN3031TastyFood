@@ -46,7 +46,7 @@ export default function Register() {
   return (
     <Layout>
       <main className="flex min-h-screen flex-col items-center p-24">
-        <h1 className="text-3xl font-bold">Create an account</h1>
+        <h1 className="text-3x1 font-bold">Create an account</h1>
         <form onSubmit={handleSubmit}> {/* Form now wraps the entire content */}
           <div className="mb-4">
             <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">
@@ -88,7 +88,7 @@ export default function Register() {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 rounded focus:outline-none focus:shadow-outline"
             >
               Sign up!
             </button>

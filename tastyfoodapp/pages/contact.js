@@ -60,7 +60,7 @@ export default function Contact() {
                 </div>
                 <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
-                        <button className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        <button className="btn bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 rounded focus:outline-none focus:shadow-outline" type="submit">
                             Send
                         </button>
                     </div>

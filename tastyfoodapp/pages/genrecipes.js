@@ -51,7 +51,15 @@ export default function GenRecipes() {
   };
 
   const handleSaveRecipe = (recipe) => {
-    setFavorites(prevFavorites => [...prevFavorites, recipe]);
+    if (!favorites.includes(recipe)) {
+      setFavorites(prevFavorites => [...prevFavorites, recipe]);
+  } else {
+      alert("This recipe is already in your favorites!");
+  }
+  };
+
+  const handleRemoveFavorite = (index) => {
+    setFavorites(prevFavorites => prevFavorites.filter((_, i) => i !== index));
   };
 
   return (
@@ -59,8 +67,8 @@ export default function GenRecipes() {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="super-flex-container">
           <div className="super-generate-wrapper">
-            <h1 className="text-2xl font-bold">Generating Recipes</h1>
-            <p className="text-center">What ingredients would you like to generate recipe with?</p>
+            <h1 className="text-2xl font-bold text-center">Generating Recipes</h1>
+            <p className="text-center">What ingredient(s) would you like to generate a recipe with?</p>
             <form>
               <input
                 type="text"
@@ -146,16 +154,28 @@ export default function GenRecipes() {
         </div>
       </main>
 
-      {/* Display favorite recipes */}
-      
-      <div className="favorites-wrapper">
-        <h2 className="text-2xl font-bold">Favorites</h2>
-        <ul>
-          {favorites.map((favRecipe, index) => (
-            <li key={index}>{favRecipe}</li>
-          ))}
-        </ul>
-      </div>
+      {/* Display favorite recipes */}      
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <div className="favorites-wrapper">
+          <h2 className="text-2xl font-bold">Favorites</h2>
+          <ol>
+            {favorites.map((favRecipe, index) => (
+              <li key={index}>
+                <div className="flex items-center justify-between">
+                  {index + 1}. {favRecipe}
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveFavorite(index)}
+                    className='bg-custom-bluegrey hover:bg-sky-600 text-black px-4 py-2 rounded shadow-md'
+                  >
+                    Remove
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </main>
     </Layout>
   );
 }
