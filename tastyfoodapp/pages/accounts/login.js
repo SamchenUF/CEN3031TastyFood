@@ -6,10 +6,31 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => { // Make this function async
     event.preventDefault();
+    
     // handle authentication
-    alert(`Submitting:, ${username}, ${password}`);
+    console.log(`Submitting:, ${username}, ${password}`); // Use console.log for debugging
+
+    try {
+      const response = await fetch('/api/login', { // `await` requires `async`
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }), // Ensure data is correctly formatted
+      });
+
+      if (response.ok) {
+        alert(`Welcome back, ${username}`);
+      } else {
+        const errorMessage = await response.json(); // Get the error message
+        alert(`Invalid username or password. Please try again.`);
+      }
+    } catch (error) {
+      console.error("Error during login:", error); // Log the error
+      alert("An error occurred during login. Please try again later.");
+    }
   };
 
   return (
