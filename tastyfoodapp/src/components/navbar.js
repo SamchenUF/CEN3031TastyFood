@@ -42,7 +42,7 @@ const Navbar = () => {
 
         {/* Right-aligned login button */}
         <div className="flex">
-          <Link href="/login" legacyBehavior>
+          <Link href="/accounts/login" legacyBehavior>
             <a className="text-white font-bold py-2 px-4 rounded">Login</a>
           </Link>
         </div>
