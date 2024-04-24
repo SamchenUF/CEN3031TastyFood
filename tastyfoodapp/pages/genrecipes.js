@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import gptCall from './/api/gptCall';
 import Layout from '@/components/layout';
+import "./genrecipes.css";
+
 
 export default function GenRecipes() {
   // State variables to manage input values
@@ -31,6 +33,8 @@ export default function GenRecipes() {
   return (
     <Layout>
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className = "super-flex-container">
+          <div className ="super-generate-wrapper">
       <h1 className="text-2xl font-bold">Generating Recipes</h1>
       <p className="text-center">What ingredients would you like to generate recipe with?</p>
       <form>
@@ -101,11 +105,24 @@ export default function GenRecipes() {
         <p></p>
         {/* Button with onClick event */}
       </form>
-      <div>
-      <button type ='button' onClick={getResponse} className="outline-sky-500 size-16 bg-custom-bluegrey hover:bg-sky-600 w-96 justify-center rounded flex items-center py-2 px-4">
-          Find a Recipe!
-      </button>
-      {message && <p>{message}</p>}
+
+      </div>
+
+      
+      <div className="super-render-wrapper">
+        
+        <div className="render-wrapper">
+        
+      <div className = "generate-wrapper">
+        <button type ='button' onClick={getResponse} className="outline-sky-500 size-16 bg-custom-bluegrey hover:bg-sky-600 w-96 justify-center rounded flex items-center py-2 px-4">
+            Find a Recipe!
+        </button>
+        <div className="message-wrapper">
+          <span>{message && <p>{message}</p>}</span>
+        </div>      
+      </div>
+      </div>
+      </div>
       </div>
     </main>
     </Layout>

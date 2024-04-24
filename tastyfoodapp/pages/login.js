@@ -30,6 +30,7 @@ const Login = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
               style={{ color: 'black',
                         paddingLeft: "10px",
+                      
                   }}
             />
 
@@ -44,16 +45,17 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              style={{ color: 'black',
-              paddingLeft: "10px"
-        }}
+              style={{ 
+                color: 'black',
+                paddingLeft: "10px",
+              }}
             />
           </div>
           <div className="flex items-center justify-between">
           <p></p>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Sign In
             </button>
