@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Layout from "@/components/layout";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -28,6 +29,7 @@ export default function Contact() {
     };
 
     return (
+        <Layout>
         <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-100">
             <h1 className="text-3xl font-bold mb-6">Contact Page</h1>
             <form className="w-full max-w-lg" onSubmit={handleSubmit}>
@@ -46,7 +48,7 @@ export default function Contact() {
                             Email
                         </label>
                         <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                               id="email" type="email" placeholder="email@example.com" name="email" value={formData.email} onChange={handleChange} />
+                             id="email" type="email" placeholder="email@example.com" name="email" value={formData.email} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-6">
@@ -67,5 +69,6 @@ export default function Contact() {
                 </div>
             </form>
         </main>
+        </Layout>
     );
 }
